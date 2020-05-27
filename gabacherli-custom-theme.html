@@ -8,19 +8,19 @@
       {/block:Description}
       <link rel="shortcut icon" href="{Favicon}" />
       <link rel="alternate" type="application/rss+xml" href="{RSS}" />
-      <meta name="color:Link Background" content="#eee">
-      <meta name="color:Background" content="#fff">
-      <meta name="color:Links" content="#000">
-      <meta name="color:Links Hover" content="#000">
-      <meta name="color:Body" content="#000">
-      <meta name="color:Title Background" content="#f9f9f9">
+      <meta name="color:Link Background" content="#00ff00">
+      <meta name="color:Background" content="#ffffff">
+      <meta name="color:Links" content="#000000">
+      <meta name="color:Links Hover" content="#000000">
+      <meta name="color:Body" content="#000000">
+      <meta name="color:Title Background" content="#ffffff">
       <meta name="text:Body Width" content="400">
       <meta name="text:Permalink" content="[+]">
       <meta name="text:Font Size" content="12">
       <meta name="text:Post Gap" content="50">
       <meta name="text:Title Size" content="30">
-      <meta name="font:Body" content="Verdana">
-      <meta name="font:Title" content="Verdana">
+      <meta name="font:Body" content="Consolas">
+      <meta name="font:Title" content="Verdana">     
       <meta name="if:Captions" content="1">
       <meta name="if:Show Description" content="1">
    </head>
@@ -34,19 +34,19 @@
    
    <style type="text/css"> 
       body {
-          font-family:'consolas';
-          font-size: {text:Font Size}px;
+          background-color:{color:Background};
           color: {color:Body};
+          text-align: left;
+          font-family:consolas;
+          font-size: {text:Font Size}px;
           width:{text:Body Width}px;
           margin: -30px auto -50px auto;
           padding: 20px;
-          text-align: left;
-          background-color:{color:Background};
       }
       
       blockquote { 
-          padding:0px 0 0 0px; 
           margin:0px 0 0 0px; 
+          padding:0px 0 0 0px; 
       }
       
       a {
@@ -64,66 +64,16 @@
       }
       
       h1 {
-          font-family: "Times New Roman", 
-            helvetica, arial, verdana, sans-serif;
-          color: #000;
-          text-align: center;
-          font-size: 20px;
-          text-transform: lowercase;
-          padding: 0;
-          margin-top: 4em;
-      }
-      
-      h2 {
-          font-family: "helvetica neue", 
-            helvetica, arial, verdana, sans-serif;
-          font-size: 14px;
-          line-height: 20px;
           text-transform: uppercase;
+          font-family: verdana,helvetica;
+          font-size: 14px;
           margin-left: -3px;
+          line-height: 20px;
       }
       
-      .captions { text-align:right; line-height:18px; }
-      
-      .audio { width:{text:Body Width}px; background-color:#e4e4e4; }
-      
-      .post { margin-bottom:{text:Post Gap}px; }
-      
-      .center { text-align: center; }
-      
-      .regular_post img { max-width: 70%; }
-      
-      .title a { 
-          background-color:{color:Title Background};
-          color:#ffffff;
-      }
-      
-      .title a:hover { 
-          background-color:{color:Link Background}; 
-          color:#ffffff;
-      }
-      
-      .pagi { 
-          padding:0px; 
-          text-align:center; 
-          margin-bottom:20px; 
-      }
-      
-      .nav { 
-          padding:5px; 
-          text-align:center; 
-          margin-bottom:20px; 
-      }
-      
-      .title{
+      .title {
           text-align:center;
-          font-family:{font:Title};
           text-transform:uppercase;
-          font-weight:bold;
-          margin-top:100px;
-          font-size:{text:Title Size}px;
-          margin-bottom:50px;
-          line-height:48px;
           text-shadow:
                 0px 1px 0 rgb(0,0,0),
                 0px -1px 0 rgb(0,0,0),
@@ -133,8 +83,45 @@
                 1px -1px 0 rgb(0,0,0),
                 -1px 1px 0 rgb(0,0,0),
                 -1px -1px 0 rgb(0,0,0);
+          font-family:{font:Title};
+          font-size:{text:Title Size}px;
+          font-weight:bold;
+          margin-top:100px;
+          margin-bottom:50px;
+          line-height:48px;
       }
-
+      
+      .title a { 
+          background-color:transparent;
+          color:#ffffff;
+      }
+      
+      .title a:hover { 
+          background-color:{color:Link Background}; 
+          color:#ffffff;
+      }
+      
+      .container {
+          color: transparent;
+          text-align: center;
+          position: relative;
+      }
+      
+      .rounded-corner { border-radius: 50%; }
+      
+      .centered {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+      }
+      
+      .ask { 
+          text-align:center;
+          font-family:consolas; 
+          margin-top:-50px;
+      }
+      
       .permalink {
           position: absolute;
           display: block; 
@@ -143,24 +130,69 @@
           font-size:11px;
       }
       
+      .post { margin-bottom:{text:Post Gap}px; }
+      
+      .captions { 
+          text-align:right; 
+          line-height:18px; 
+      }
+      
+      .audio { background-color:#e4e4e4; width:{text:Body Width}px; }
+      
+      .regular_post img { width:{Body Width}; }
+      
+      .info { margin-top:45px }
+      
+      .pagi { 
+          text-align:center; 
+          margin-bottom:20px; 
+          padding:5px; 
+      }
+      
+      .social {
+          position:fixed; 
+          font-family:verdana; 
+          bottom:10px; 
+          right:10px; 
+          font-size:12px;
+      }
+      
       {CustomCSS}
       
    </style>
    
    <body>
-      <!-- INFO -->
+      <!-- HEADER, INFO AND AVATAR -->
       <div class="post">
-        <div class="title">
-            <a href="/">{Title}</a>
-        </div>
-        {block:IfShowDescription}
+         <div class="container">
+            <div class="title">
+               {block:ShowAvatar}
+                  <img class="rounded-corner" src="{PortraitURL-128}"/>
+               {/block:ShowAvatar}
+               <div class="centered">
+                  <a href="/">{Title}</a>
+               </div>
+            </div>
+         </div>
+        
+         <div class="ask">
+            <a href="/ask">Ask</a> | <a href="/archive">Archive</a>
+         </div>
+        
+         {block:IfShowDescription}
             {block:IndexPage}
-                <div class="permalink">[info]</div>
-                <div class="post">
-                    {block:Description}
+               <div class="permalink">
+                  <div class="info">
+                     [info]
+                  </div>
+               </div>
+               <div class="post">
+                  <div class="info">
+                     {block:Description}
                         {DESCRIPTION}
-                    {/block:Description}
-                </div>
+                     {/block:Description}
+                  </div>
+               </div>
             {/block:IndexPage}
          {/block:IfShowDescription}
       </div>
@@ -171,9 +203,19 @@
 			<div class="permalink">
                {block:IndexPage}
 			      <a href="{permalink}">{text:Permalink}</a>
+			      <center>
+			         {LikeButton}
+			         {ReblogButton}
+			      </center>
 			   {/block:IndexPage}
+			   
+			   <!-- DISPLAY NOTE COUNTER ON PERMALINK PAGE -->
 			   {block:PermalinkPage}
 				     {FormattedNoteCount}
+				     <center>
+				        {LikeButton}
+				        {ReblogButton}
+				     </center>
 			   {/block:PermalinkPage}
 			</div>
 			          
@@ -229,7 +271,7 @@
 			
             {block:Video}
                <div class="post">
-                  <CENTER>{Video-400}</center>
+                  <center>{Video-400}</center>
                   {block:IndexPage}
 				     {block:IfCaptions}
 					    {block:Caption}
@@ -307,7 +349,7 @@
                {block:Text}
                   <div class="post">
                      {block:Title}
-                        <h2>{Title}</h2>
+                        <h1>{Title}</h1>
                      {/block:Title}
 					 {Body}
                      {block:Permalinkpage}
@@ -324,7 +366,7 @@
 			   {block:Chat}
                   <div class="post">
                      {block:Title}
-                        <h2>{Title}</h2>
+                        <h1>{Title}</h1>
                      {/block:Title}
                      {block:Lines}
                         {block:Label}
@@ -355,8 +397,8 @@
          {/block:Link}
       {/block:Posts}
 	  
-	  <!-- SOCIAL MEDIA -->
-      <div style="position:fixed; font-family:verdana; bottom:10px; right:10px; font-size:12px;">
+	  <!-- SOCIAL MEDIA FIXED ON EVERY PAGE-->
+      <div class="social">
          <figure>
             <a href="https://instagram.com/gabacherli"> 
                 <img src="https://platform-cdn.sharethis.com/img/instagram.png"> 
@@ -390,34 +432,23 @@
             </a>
             <figcaption>@gabacherli</figcaption>
          </figure>
+         
+         <figure>
+            <a href="https://github.com/gabacherli"> 
+                <img src="https://platform-cdn.sharethis.com/img/github.png"> 
+            </a>
+            <figcaption>@gabacherli</figcaption>
+         </figure>
       </div>
       
 	  <!-- RODAPÉ -->
 	  <div class="pagi">
 	     {block:NextPage}
-		    <a href={NextPage}>
-		       << older
-		    </a>
+		    <a href={NextPage}><< older</a>
 		 {/block:NextPage}
-		 | 
-		 {block:PreviousPage}
-		    <a href={PreviousPage}>
-			   newer >>
-			</a> 
+	     {block:PreviousPage}
+		    <a href={PreviousPage}>newer >></a>
 	     {/block:PreviousPage}
 	  </div>
-      <div class="nav">
-         <a href="/ask">Ask</a> 
-		 | 
-		 <a href="/archive">Archive</a> 
-		 | 
-		 <a href="/rss">RSS</a> 
-		 
-		 {block:HasPages}
-		    {block:Pages}
-			   | <a href="{URL}">{Label}</a>
-			{/block:Pages}
-	     {/block:HasPages} 
-      </div>
    </body>
 </html>
