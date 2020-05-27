@@ -1,0 +1,423 @@
+<!DOCTYPE HTML>
+<html xmlns="https://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <title>gabriel</title>
+      {block:Description}
+      <meta name="description" content="{MetaDescription}" />
+      {/block:Description}
+      <link rel="shortcut icon" href="{Favicon}" />
+      <link rel="alternate" type="application/rss+xml" href="{RSS}" />
+      <meta name="color:Link Background" content="#eee">
+      <meta name="color:Background" content="#fff">
+      <meta name="color:Links" content="#000">
+      <meta name="color:Links Hover" content="#000">
+      <meta name="color:Body" content="#000">
+      <meta name="color:Title Background" content="#f9f9f9">
+      <meta name="text:Body Width" content="400">
+      <meta name="text:Permalink" content="[+]">
+      <meta name="text:Font Size" content="12">
+      <meta name="text:Post Gap" content="50">
+      <meta name="text:Title Size" content="30">
+      <meta name="font:Body" content="Verdana">
+      <meta name="font:Title" content="Verdana">
+      <meta name="if:Captions" content="1">
+      <meta name="if:Show Description" content="1">
+   </head>
+   
+   <script type="text/javascript">
+      $(window).load(function(){
+      $("p").remove(":contains('Source:')");
+      $("p").remove(":contains('(via')");
+      });
+   </script>
+   
+   <style type="text/css"> 
+      body {
+          font-family:'consolas';
+          font-size: {text:Font Size}px;
+          color: {color:Body};
+          width:{text:Body Width}px;
+          margin: -30px auto -50px auto;
+          padding: 20px;
+          text-align: left;
+          background-color:{color:Background};
+      }
+      
+      blockquote { 
+          padding:0px 0 0 0px; 
+          margin:0px 0 0 0px; 
+      }
+      
+      a {
+          background-color:transparent;
+          color:{color:Links};
+          text-decoration: none;
+          border: none;
+      }
+      
+      a img { border: none; }
+      
+      a:hover { 
+          background-color:{color:Link Background}; 
+          color:{color:Links Hover}; 
+      }
+      
+      h1 {
+          font-family: "Times New Roman", 
+            helvetica, arial, verdana, sans-serif;
+          color: #000;
+          text-align: center;
+          font-size: 20px;
+          text-transform: lowercase;
+          padding: 0;
+          margin-top: 4em;
+      }
+      
+      h2 {
+          font-family: "helvetica neue", 
+            helvetica, arial, verdana, sans-serif;
+          font-size: 14px;
+          line-height: 20px;
+          text-transform: uppercase;
+          margin-left: -3px;
+      }
+      
+      .captions { text-align:right; line-height:18px; }
+      
+      .audio { width:{text:Body Width}px; background-color:#e4e4e4; }
+      
+      .post { margin-bottom:{text:Post Gap}px; }
+      
+      .center { text-align: center; }
+      
+      .regular_post img { max-width: 70%; }
+      
+      .title a { 
+          background-color:{color:Title Background};
+          color:#ffffff;
+      }
+      
+      .title a:hover { 
+          background-color:{color:Link Background}; 
+          color:#ffffff;
+      }
+      
+      .pagi { 
+          padding:0px; 
+          text-align:center; 
+          margin-bottom:20px; 
+      }
+      
+      .nav { 
+          padding:5px; 
+          text-align:center; 
+          margin-bottom:20px; 
+      }
+      
+      .title{
+          text-align:center;
+          font-family:{font:Title};
+          text-transform:uppercase;
+          font-weight:bold;
+          margin-top:100px;
+          font-size:{text:Title Size}px;
+          margin-bottom:50px;
+          line-height:48px;
+          text-shadow:
+                0px 1px 0 rgb(0,0,0),
+                0px -1px 0 rgb(0,0,0),
+                1px 0px 0 rgb(0,0,0),
+                -1px 0px 0 rgb(0,0,0),
+                1px 1px 0 rgb(0,0,0),
+                1px -1px 0 rgb(0,0,0),
+                -1px 1px 0 rgb(0,0,0),
+                -1px -1px 0 rgb(0,0,0);
+      }
+
+      .permalink {
+          position: absolute;
+          display: block; 
+          {block:Permalinkpage}margin-left:-55px;{/block:Permalinkpage}
+          {block:IndexPage}margin-left:-50px;{/block:IndexPage}
+          font-size:11px;
+      }
+      
+      {CustomCSS}
+      
+   </style>
+   
+   <body>
+      <!-- INFO -->
+      <div class="post">
+        <div class="title">
+            <a href="/">{Title}</a>
+        </div>
+        {block:IfShowDescription}
+            {block:IndexPage}
+                <div class="permalink">[info]</div>
+                <div class="post">
+                    {block:Description}
+                        {DESCRIPTION}
+                    {/block:Description}
+                </div>
+            {/block:IndexPage}
+         {/block:IfShowDescription}
+      </div>
+      
+	  <!-- POSTS -->
+      {block:Posts} 
+	     <div class="post">
+			<div class="permalink">
+               {block:IndexPage}
+			      <a href="{permalink}">{text:Permalink}</a>
+			   {/block:IndexPage}
+			   {block:PermalinkPage}
+				     {FormattedNoteCount}
+			   {/block:PermalinkPage}
+			</div>
+			          
+			{block:Photo}
+               <div class="post">
+                  {LinkOpenTag}
+				     <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" width="{text:Body Width}"/>
+				  {LinkCloseTag}
+                  {block:IndexPage}
+				     {block:IfCaptions}
+					    {block:Caption}
+						   <div class="captions">{CAPTION}</div>
+                        {/block:Caption}
+					 {/block:IfCaptions}
+				  {/block:IndexPage}
+				  {block:PermalinkPage}
+				     {block:Caption}
+				        <div class="captions">{CAPTION}</div>
+                     {/block:Caption}
+					 {block:Date}
+                        <br><br>
+                        <div class="captions">
+                           {Month}&nbsp;{YEAR}
+						</div>
+					 {/block:Date}
+			      {/block:PermalinkPage}
+               </div>
+            {/block:Photo}
+			
+            {block:Photoset}
+               <div class="post">
+                  <center>{Photoset-400}</center>
+                  {block:IndexPage}
+				     {block:IfCaptions}
+				        {block:Caption}
+                           <div class="captions">{CAPTION}</div>
+                        {/block:Caption}
+				     {/block:IfCaptions}
+				  {/block:IndexPage}
+                  {block:PermalinkPage}
+				     {block:Caption}
+                        <div class="captions">{CAPTION}</div>
+                     {/block:Caption}
+					 {block:Date}
+                        <br><br>
+                        <div class="captions">
+                           {Month}&nbsp;{YEAR}
+                        </div>
+                     {/block:Date}
+			      {/block:PermalinkPage}
+               </div>
+            {/block:Photoset}
+			
+            {block:Video}
+               <div class="post">
+                  <CENTER>{Video-400}</center>
+                  {block:IndexPage}
+				     {block:IfCaptions}
+					    {block:Caption}
+                           <div class="captions">{CAPTION}</div>
+                        {/block:Caption}
+					 {/block:IfCaptions}
+				  {/block:IndexPage}
+                  {block:PermalinkPage}
+				     {block:Caption}
+                        <div class="captions">{CAPTION}</div>
+                     {/block:Caption}
+					 {block:Date}
+                        <br><br>
+                        <div class="captions">
+                           {Month}&nbsp;{YEAR}
+                        </div>
+					 {/block:Date}
+				  {/block:PermalinkPage}
+               </div>
+            {/block:Video}
+			
+            {block:Audio}
+               <div class="post">
+                  <div class="audio">{AudioPlayerGrey}</div>
+                  {block:IndexPage}
+				     {block:IfCaptions}
+                        <div class="captions">
+                           {block:TrackName}
+					          {TrackName}
+					       {/block:TrackName}
+					       {block:Artist}
+   					          / <I>{Artist}</I>
+					       {/block:Artist}
+                        </div>
+                     {/block:IfCaptions}
+				  {/block:IndexPage}
+                  {block:PermalinkPage}
+                     <div class="captions">
+                        {block:TrackName}
+						   {TrackName}
+						{/block:TrackName}
+						{block:Artist} 
+						   / <I>{Artist}</I>
+						{/block:Artist}
+						{block:Date}
+                           <br><br>
+                           <div class="captions">
+                              {Month}&nbsp;{YEAR}
+                           </div>
+					    {/block:Date}
+                     </div>
+                  {/block:Permalinkpage}
+               </div>
+            {/block:Audio}
+			
+            {block:Quote}
+               <div class="post">
+                  <i>{Quote}</i>
+                  {block:Source}
+                     <br>
+                     {Source}
+                  {/block:Source}
+                  {block:Permalinkpage}
+                     {block:Date}
+                        <br><br>
+                        <div class="captions">
+                           {Month}&nbsp;{YEAR}
+                        </div>
+					 {/block:Date}
+                  {/block:Permalinkpage}
+               </div>
+            {/block:Quote}
+			
+			<div class="regular_post">
+               {block:Text}
+                  <div class="post">
+                     {block:Title}
+                        <h2>{Title}</h2>
+                     {/block:Title}
+					 {Body}
+                     {block:Permalinkpage}
+                        {block:Date}
+                           <br><br>
+                           <div class="captions">
+                              {Month}&nbsp;{YEAR}
+                           </div>
+					    {/block:Date}
+                     {/block:Permalinkpage}
+                  </div>
+               {/block:Text}
+               
+			   {block:Chat}
+                  <div class="post">
+                     {block:Title}
+                        <h2>{Title}</h2>
+                     {/block:Title}
+                     {block:Lines}
+                        {block:Label}
+						   <strong>{Label}</strong>
+						{/block:Label}
+						<br>
+                     {/block:Lines}
+                  </div>
+			   {/block:Chat}
+            </div>
+         </div>
+      
+         {block:Link}
+            <div class="post">
+               <a href="{URL}" {Target}>{Name}</a>
+               {block:Description}
+		   	      <br>{Description}
+		   	   {/block:Description}
+               {block:Permalinkpage}
+                  {block:Date}
+                     <br><br>
+                     <div class="captions">
+                        {MONTH}&nbsp;{YEAR}
+                     </div>
+			      {/block:Date}
+               {/block:Permalinkpage}
+            </div>
+         {/block:Link}
+      {/block:Posts}
+	  
+	  <!-- SOCIAL MEDIA -->
+      <div style="position:fixed; font-family:verdana; bottom:10px; right:10px; font-size:12px;">
+         <figure>
+            <a href="https://instagram.com/gabacherli"> 
+                <img src="https://platform-cdn.sharethis.com/img/instagram.png"> 
+            </a>
+            <figcaption>@gabacherli</figcaption>
+         </figure>
+         
+         <br>
+         
+         <figure>
+            <a href="https://fb.com/gabacherli">
+                <img src="https://platform-cdn.sharethis.com/img/facebook.png">
+            </a>
+            <figcaption>@gabacherli</figcaption>
+         </figure>
+         
+         <br>
+         
+         <figure>
+            <a href="https://twitter.com/gabacherli"> 
+                <img src="https://platform-cdn.sharethis.com/img/twitter.png"> 
+            </a>
+            <figcaption>@gabacherli</figcaption>
+         </figure>
+         
+         <br>
+         
+         <figure>
+            <a href="https://bit.ly/spotify-gabacherli"> 
+                <img src="https://platform-cdn.sharethis.com/img/spotify.png"> 
+            </a>
+            <figcaption>@gabacherli</figcaption>
+         </figure>
+      </div>
+      
+	  <!-- RODAPÉ -->
+	  <div class="pagi">
+	     {block:NextPage}
+		    <a href={NextPage}>
+		       << older
+		    </a>
+		 {/block:NextPage}
+		 
+		 {block:PreviousPage}
+		    <a href={PreviousPage}>
+			   newer >>
+			</a> 
+	     {/block:PreviousPage}
+	  </div>
+      <div class="nav">
+         <a href="/ask">Ask</a> 
+		 | 
+		 <a href="/archive">Archive</a> 
+		 | 
+		 <a href="/rss">RSS</a> 
+		 
+		 {block:HasPages}
+		    {block:Pages}
+			   | <a href="{URL}">{Label}</a>
+			{/block:Pages}
+	     {/block:HasPages} 
+      </div>
+   </body>
+</html>
